@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://elements/Orbital.tscn" type="PackedScene" id=1]
+
+[sub_resource type="SphereMesh" id=1]
+
+[sub_resource type="CubeMesh" id=2]
+
+[node name="SolarSystem" type="Spatial"]
+
+[node name="Sun" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 0.531501, -0.846493, 0, 0.846493, 0.531501, 0, 0, 0 )
+mesh_model = SubResource( 1 )
+origin = NodePath("..")
+orbit_radius = 0.0
+
+[node name="Orbital" parent="." instance=ExtResource( 1 )]
+transform = Transform( -0.218211, -0.196268, 0.955893, 0.440635, -0.893802, -0.0829384, 0.870734, 0.403094, 0.28152, 0, 0, 0 )
+mesh_model = SubResource( 2 )
+origin = NodePath("../Sun")
+orbit_radius = 6.0
+orbiting_axis = Vector3( -1, 0.000414938, 0 )
+
+[node name="Orbital" parent="Orbital" instance=ExtResource( 1 )]
+transform = Transform( 0.673217, 0.46924, 0.571606, 0, 0.772917, -0.634498, -0.739545, 0.427156, 0.52034, 0, 0, 0 )
+origin = NodePath("..")
+orbit_radius = 5.7
+orbiting_speed = 0.516
+orbiting_axis = Vector3( 0, 1, 0 )

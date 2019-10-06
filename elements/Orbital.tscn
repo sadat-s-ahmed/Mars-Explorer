@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://elements/Orbital.gd" type="Script" id=1]
+
+[sub_resource type="SphereMesh" id=1]
+
+[node name="Orbital" type="Spatial"]
+script = ExtResource( 1 )
+mesh_model = SubResource( 1 )
+origin = null
+orbiting_axis = Vector3( -1, 0, 0 )
+
+[node name="OrbitCentre" type="Position3D" parent="."]
+
+[node name="Mesh" type="MeshInstance" parent="OrbitCentre"]

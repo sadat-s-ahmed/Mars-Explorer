@@ -1,0 +1,30 @@
+[gd_resource type="Environment" load_steps=3 format=2]
+
+[ext_resource path="res://materials/textures/skybox.png" type="Texture" id=1]
+
+[sub_resource type="PanoramaSky" id=1]
+radiance_size = 3
+panorama = ExtResource( 1 )
+
+[resource]
+background_mode = 2
+background_sky = SubResource( 1 )
+background_sky_custom_fov = 70.0
+background_color = Color( 0, 0.0588235, 0.117647, 1 )
+tonemap_mode = 2
+tonemap_exposure = 0.75
+tonemap_white = 1.35
+auto_exposure_scale = 10.0
+dof_blur_far_quality = 0
+dof_blur_near_distance = 2.5
+glow_enabled = true
+glow_strength = 0.9
+glow_bloom = 0.75
+glow_blend_mode = 1
+glow_hdr_threshold = 0.75
+glow_hdr_luminance_cap = 2.0
+glow_hdr_scale = 1.0
+adjustment_enabled = true
+adjustment_brightness = 0.9
+adjustment_contrast = 1.1
+adjustment_saturation = 0.85
