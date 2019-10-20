@@ -1,72 +1,115 @@
-[gd_scene format=2]
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://UI/UI Items/impact.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://UI/HUD.gd" type="Script" id=2]
+[ext_resource path="res://UI/UI Items/oxygen_progress_back.png" type="Texture" id=3]
+[ext_resource path="res://UI/UI Items/oxygen_progress_front.png" type="Texture" id=4]
+[ext_resource path="res://UI/UI Items/oxygen_progress.png" type="Texture" id=5]
+[ext_resource path="res://UI/UI Items/Loader/0.png" type="Texture" id=6]
+[ext_resource path="res://UI/UI Items/Loader/1.png" type="Texture" id=7]
+[ext_resource path="res://UI/UI Items/Loader/2.png" type="Texture" id=8]
+[ext_resource path="res://UI/UI Items/Loader/3.png" type="Texture" id=9]
+
+[sub_resource type="DynamicFont" id=1]
+size = 36
+outline_size = 1
+outline_color = Color( 0, 1, 0.835294, 1 )
+extra_spacing_char = 2
+extra_spacing_space = 4
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=2]
+default_font = SubResource( 1 )
+
+[sub_resource type="AnimatedTexture" id=3]
+flags = 4
+frames = 4
+fps = 8.0
+frame_0/texture = ExtResource( 6 )
+frame_1/texture = ExtResource( 7 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 8 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 9 )
+frame_3/delay_sec = 0.0
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = SubResource( 2 )
+script = ExtResource( 2 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 64.0
-margin_top = 64.0
-margin_right = -64.0
-margin_bottom = -64.0
+margin_left = 320.0
+margin_top = 420.0
+margin_right = -256.0
+margin_bottom = -401.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
-margin_right = 1792.0
-margin_bottom = 952.0
+[node name="Elements" type="HBoxContainer" parent="MarginContainer"]
+editor/display_folded = true
+visible = false
+margin_right = 1344.0
+margin_bottom = 259.0
 alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
-margin_right = 86.0
-margin_bottom = 952.0
-alignment = 1
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Elements"]
+margin_right = 256.0
+margin_bottom = 259.0
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-margin_top = 460.0
-margin_right = 86.0
-margin_bottom = 474.0
-text = "Oxygen Level"
+[node name="ProgressBar" type="TextureProgress" parent="MarginContainer/Elements/VBoxContainer"]
+margin_right = 256.0
+margin_bottom = 51.0
+value = 76.0
+texture_under = ExtResource( 3 )
+texture_over = ExtResource( 4 )
+texture_progress = ExtResource( 5 )
 
-[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-margin_top = 478.0
-margin_right = 86.0
-margin_bottom = 492.0
-value = 50.0
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
-margin_left = 90.0
-margin_right = 1655.0
-margin_bottom = 952.0
+[node name="Season" type="VBoxContainer" parent="MarginContainer/Elements"]
+editor/display_folded = true
+margin_left = 260.0
+margin_right = 1194.0
+margin_bottom = 259.0
 size_flags_horizontal = 3
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
-editor/display_folded = true
-margin_left = 1659.0
-margin_right = 1792.0
-margin_bottom = 952.0
-alignment = 1
+[node name="Info" type="Label" parent="MarginContainer/Elements/Season"]
+margin_right = 934.0
+margin_bottom = 45.0
+text = "Season"
+align = 1
 
-[node name="Max Temp" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
-margin_top = 442.0
-margin_right = 133.0
-margin_bottom = 456.0
+[node name="Weather" type="VBoxContainer" parent="MarginContainer/Elements"]
+editor/display_folded = true
+margin_left = 1198.0
+margin_right = 1344.0
+margin_bottom = 259.0
+alignment = 2
+
+[node name="Temp" type="Label" parent="MarginContainer/Elements/Weather"]
+margin_top = 116.0
+margin_right = 146.0
+margin_bottom = 161.0
 text = "-32 C"
 
-[node name="Min Temp" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
-margin_top = 460.0
-margin_right = 133.0
-margin_bottom = 474.0
+[node name="Wind Speed" type="Label" parent="MarginContainer/Elements/Weather"]
+margin_top = 165.0
+margin_right = 146.0
+margin_bottom = 210.0
 text = "-140 C"
 
-[node name="Wind Speed" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
-margin_top = 478.0
-margin_right = 133.0
-margin_bottom = 492.0
+[node name="Pressure" type="Label" parent="MarginContainer/Elements/Weather"]
+margin_top = 214.0
+margin_right = 146.0
+margin_bottom = 259.0
 text = "60 Kmph"
 
-[node name="Wind Direction" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
-margin_top = 496.0
-margin_right = 133.0
-margin_bottom = 510.0
-text = "60 North North West"
+[node name="Progress" type="TextureRect" parent="MarginContainer"]
+margin_right = 1344.0
+margin_bottom = 259.0
+texture = SubResource( 3 )
+expand = true
+stretch_mode = 6
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]

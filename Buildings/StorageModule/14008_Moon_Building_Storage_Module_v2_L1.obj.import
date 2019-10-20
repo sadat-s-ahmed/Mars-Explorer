@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/14008_Moon_Building_Storage_Module_v2_L1.obj-f5717b990eedb15181a85828eb73eeff.mesh"
+
+[deps]
+
+files=[ "res://.import/14008_Moon_Building_Storage_Module_v2_L1.obj-f5717b990eedb15181a85828eb73eeff.mesh" ]
+
+source_file="res://Buildings/StorageModule/14008_Moon_Building_Storage_Module_v2_L1.obj"
+dest_files=[ "res://.import/14008_Moon_Building_Storage_Module_v2_L1.obj-f5717b990eedb15181a85828eb73eeff.mesh", "res://.import/14008_Moon_Building_Storage_Module_v2_L1.obj-f5717b990eedb15181a85828eb73eeff.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true

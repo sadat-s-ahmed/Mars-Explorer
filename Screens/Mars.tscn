@@ -1,252 +1,72 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://elements/Charater.tscn" type="PackedScene" id=1]
-[ext_resource path="res://materials/meshes/rock_a.tres" type="ArrayMesh" id=2]
-[ext_resource path="res://materials/textures/sand.jpg" type="Texture" id=3]
-[ext_resource path="res://materials/shaders/CloudShader.shader" type="Shader" id=4]
-[ext_resource path="res://materials/textures/blue_noise.png" type="Texture" id=5]
-[ext_resource path="res://materials/textures/perlin_noise.jpg" type="Texture" id=6]
-[ext_resource path="res://materials/textures/worley_noise.jpg" type="Texture" id=7]
-[ext_resource path="res://elements/InfiniteTerrain.tscn" type="PackedScene" id=8]
-[ext_resource path="res://materials/shaders/TerrainShader.shader" type="Shader" id=9]
-[ext_resource path="res://materials/textures/dirt_normal.jpg" type="Texture" id=10]
-[ext_resource path="res://materials/textures/dirt.jpg" type="Texture" id=11]
-[ext_resource path="res://materials/textures/rock_normal.jpg" type="Texture" id=12]
-[ext_resource path="res://materials/textures/rock.jpg" type="Texture" id=13]
+[ext_resource path="res://elements/Terrain.tscn" type="PackedScene" id=1]
+[ext_resource path="res://elements/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Buildings/Barracks/Barracks.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Buildings/Comms Relay/Comms Relay.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Buildings/Engineering/Engineering.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Buildings/ScienceModule/ScienceModule.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Buildings/StorageModule/Storage.tscn" type="PackedScene" id=7]
 
-[sub_resource type="Environment" id=1]
-background_mode = 1
-background_color = Color( 0.580392, 0.443137, 0.333333, 1 )
-ambient_light_color = Color( 0.580392, 0.443137, 0.333333, 1 )
-ambient_light_energy = 0.75
+[sub_resource type="ProceduralSky" id=1]
+sky_top_color = Color( 0.819608, 0.419608, 0.243137, 1 )
+sky_horizon_color = Color( 0.435294, 0.133333, 0, 1 )
+sky_curve = 0.237511
+ground_bottom_color = Color( 0.133333, 0.0823529, 0.0392157, 1 )
+ground_horizon_color = Color( 0.435294, 0.133333, 0, 1 )
+ground_curve = 0.0475683
+sun_color = Color( 1, 0.513726, 0, 1 )
+
+[sub_resource type="Environment" id=2]
+background_mode = 2
+background_sky = SubResource( 1 )
 fog_enabled = true
-fog_color = Color( 0.580392, 0.443137, 0.333333, 1 )
+fog_color = Color( 0.435294, 0.133333, 0, 1 )
+fog_sun_color = Color( 0.819608, 0.419608, 0.243137, 1 )
+fog_sun_amount = 0.1
 fog_depth_begin = 0.0
-fog_depth_end = 128.0
-tonemap_mode = 2
-tonemap_exposure = 0.85
-tonemap_white = 1.25
-dof_blur_far_distance = 20.0
-dof_blur_far_transition = 10.0
-glow_strength = 0.53
+fog_depth_end = 3072.0
+fog_depth_curve = 1.51572
+fog_height_enabled = true
+fog_height_min = 128.0
+fog_height_max = -1024.0
+glow_enabled = true
+glow_intensity = 1.0
 glow_bloom = 1.0
-glow_hdr_threshold = 2.0
-glow_hdr_scale = 4.0
 
-[sub_resource type="SpatialMaterial" id=2]
-render_priority = -2
-albedo_texture = ExtResource( 3 )
-
-[sub_resource type="ConvexPolygonShape" id=3]
-points = PoolVector3Array( 0, -0.802381, 0, 0.27793, -0.555859, 0.201926, -0.0935008, -0.489585, 0.287768, 0.637285, -0.393871, 0.463009, 0.27793, -0.555859, 0.201926, 0.694631, -0.429315, 0, 0, -0.802381, 0, -0.0935008, -0.489585, 0.287768, -0.474798, -0.768241, 0, 0, -0.802381, 0, -0.474798, -0.768241, 0, -0.14763, -0.773021, -0.454364, 0, -0.802381, 0, -0.14763, -0.773021, -0.454364, 0.365238, -0.73048, -0.265358, 0.637285, -0.393871, 0.463009, 0.694631, -0.429315, 0, 0.974444, 0, 0.316611, -0.193504, -0.313101, 0.595545, 0.201994, -0.403988, 0.621659, 0, 0, 0.901906, -0.890619, -0.445312, 0, -0.651215, -0.49749, 0.473133, -1.1998, 0, 0.38983, -0.198954, -0.321919, -0.612318, -0.487416, -0.372358, -0.354125, -0.410955, 0, -0.565619, 0.555005, -0.343022, -0.403231, 0.212931, -0.425862, -0.655319, 0.380656, 0, -0.523913, 0.637285, -0.393871, 0.463009, 0.974444, 0, 0.316611, 0.592848, 0, 0.815984, -0.193504, -0.313101, 0.595545, 0, 0, 0.901906, -0.625742, 0, 0.861262, -0.890619, -0.445312, 0, -1.1998, 0, 0.38983, -0.837153, 0, -0.272005, -0.198954, -0.321919, -0.612318, -0.410955, 0, -0.565619, 0, 0, -0.618191, 0.555005, -0.343022, -0.403231, 0.380656, 0, -0.523913, 0.918589, 0, -0.298463, 0.249503, 0.403716, 0.767901, 0.708957, 0.541602, 0.515086, 0.134588, 0.704731, 0.414225, -0.974074, 0.60201, 0.707697, -0.266283, 0.532567, 0.819521, -0.492689, 0.985393, 0.357956, -0.70672, 0.436783, -0.513456, -1.12497, 0.695275, 0, -0.450311, 0.900633, -0.327166, 0.191147, 0.309287, -0.58829, -0.217339, 0.434679, -0.668887, 0.174867, 0.915642, -0.538193, 0.993464, 0.496733, 0, 0.688749, 0.526163, -0.500403, 0.585315, 0.947066, 0, 0.585315, 0.947066, 0, 0.174867, 0.915642, -0.538193, 0, 1.00378, 0, 0.585315, 0.947066, 0, 0.688749, 0.526163, -0.500403, 0.174867, 0.915642, -0.538193, 0.688749, 0.526163, -0.500403, 0.191147, 0.309287, -0.58829, 0.174867, 0.915642, -0.538193, 0.174867, 0.915642, -0.538193, -0.450311, 0.900633, -0.327166, 0, 1.00378, 0, 0.174867, 0.915642, -0.538193, -0.217339, 0.434679, -0.668887, -0.450311, 0.900633, -0.327166, -0.217339, 0.434679, -0.668887, -0.70672, 0.436783, -0.513456, -0.450311, 0.900633, -0.327166, -0.450311, 0.900633, -0.327166, -0.492689, 0.985393, 0.357956, 0, 1.00378, 0, -0.450311, 0.900633, -0.327166, -1.12497, 0.695275, 0, -0.492689, 0.985393, 0.357956, -1.12497, 0.695275, 0, -0.974074, 0.60201, 0.707697, -0.492689, 0.985393, 0.357956, -0.492689, 0.985393, 0.357956, 0.134588, 0.704731, 0.414225, 0, 1.00378, 0, -0.492689, 0.985393, 0.357956, -0.266283, 0.532567, 0.819521, 0.134588, 0.704731, 0.414225, -0.266283, 0.532567, 0.819521, 0.249503, 0.403716, 0.767901, 0.134588, 0.704731, 0.414225, 0.134588, 0.704731, 0.414225, 0.585315, 0.947066, 0, 0, 1.00378, 0, 0.134588, 0.704731, 0.414225, 0.708957, 0.541602, 0.515086, 0.585315, 0.947066, 0, 0.708957, 0.541602, 0.515086, 0.993464, 0.496733, 0, 0.585315, 0.947066, 0, 0.918589, 0, -0.298463, 0.688749, 0.526163, -0.500403, 0.993464, 0.496733, 0, 0.918589, 0, -0.298463, 0.380656, 0, -0.523913, 0.688749, 0.526163, -0.500403, 0.380656, 0, -0.523913, 0.191147, 0.309287, -0.58829, 0.688749, 0.526163, -0.500403, 0, 0, -0.618191, -0.217339, 0.434679, -0.668887, 0.191147, 0.309287, -0.58829, 0, 0, -0.618191, -0.410955, 0, -0.565619, -0.217339, 0.434679, -0.668887, -0.410955, 0, -0.565619, -0.70672, 0.436783, -0.513456, -0.217339, 0.434679, -0.668887, -0.837153, 0, -0.272005, -1.12497, 0.695275, 0, -0.70672, 0.436783, -0.513456, -0.837153, 0, -0.272005, -1.1998, 0, 0.38983, -1.12497, 0.695275, 0, -1.1998, 0, 0.38983, -0.974074, 0.60201, 0.707697, -1.12497, 0.695275, 0, -0.625742, 0, 0.861262, -0.266283, 0.532567, 0.819521, -0.974074, 0.60201, 0.707697, -0.625742, 0, 0.861262, 0, 0, 0.901906, -0.266283, 0.532567, 0.819521, 0, 0, 0.901906, 0.249503, 0.403716, 0.767901, -0.266283, 0.532567, 0.819521, 0.592848, 0, 0.815984, 0.708957, 0.541602, 0.515086, 0.249503, 0.403716, 0.767901, 0.592848, 0, 0.815984, 0.974444, 0, 0.316611, 0.708957, 0.541602, 0.515086, 0.974444, 0, 0.316611, 0.993464, 0.496733, 0, 0.708957, 0.541602, 0.515086, 0.380656, 0, -0.523913, 0, 0, -0.618191, 0.191147, 0.309287, -0.58829, 0.380656, 0, -0.523913, 0.212931, -0.425862, -0.655319, 0, 0, -0.618191, 0.212931, -0.425862, -0.655319, -0.198954, -0.321919, -0.612318, 0, 0, -0.618191, -0.410955, 0, -0.565619, -0.837153, 0, -0.272005, -0.70672, 0.436783, -0.513456, -0.410955, 0, -0.565619, -0.487416, -0.372358, -0.354125, -0.837153, 0, -0.272005, -0.487416, -0.372358, -0.354125, -0.890619, -0.445312, 0, -0.837153, 0, -0.272005, -1.1998, 0, 0.38983, -0.625742, 0, 0.861262, -0.974074, 0.60201, 0.707697, -1.1998, 0, 0.38983, -0.651215, -0.49749, 0.473133, -0.625742, 0, 0.861262, -0.651215, -0.49749, 0.473133, -0.193504, -0.313101, 0.595545, -0.625742, 0, 0.861262, 0, 0, 0.901906, 0.592848, 0, 0.815984, 0.249503, 0.403716, 0.767901, 0, 0, 0.901906, 0.201994, -0.403988, 0.621659, 0.592848, 0, 0.815984, 0.201994, -0.403988, 0.621659, 0.637285, -0.393871, 0.463009, 0.592848, 0, 0.815984, 0.974444, 0, 0.316611, 0.918589, 0, -0.298463, 0.993464, 0.496733, 0, 0.974444, 0, 0.316611, 0.694631, -0.429315, 0, 0.918589, 0, -0.298463, 0.694631, -0.429315, 0, 0.555005, -0.343022, -0.403231, 0.918589, 0, -0.298463, 0.365238, -0.73048, -0.265358, 0.212931, -0.425862, -0.655319, 0.555005, -0.343022, -0.403231, 0.365238, -0.73048, -0.265358, -0.14763, -0.773021, -0.454364, 0.212931, -0.425862, -0.655319, -0.14763, -0.773021, -0.454364, -0.198954, -0.321919, -0.612318, 0.212931, -0.425862, -0.655319, -0.14763, -0.773021, -0.454364, -0.487416, -0.372358, -0.354125, -0.198954, -0.321919, -0.612318, -0.14763, -0.773021, -0.454364, -0.474798, -0.768241, 0, -0.487416, -0.372358, -0.354125, -0.474798, -0.768241, 0, -0.890619, -0.445312, 0, -0.487416, -0.372358, -0.354125, -0.474798, -0.768241, 0, -0.651215, -0.49749, 0.473133, -0.890619, -0.445312, 0, -0.474798, -0.768241, 0, -0.0935008, -0.489585, 0.287768, -0.651215, -0.49749, 0.473133, -0.0935008, -0.489585, 0.287768, -0.193504, -0.313101, 0.595545, -0.651215, -0.49749, 0.473133, 0.694631, -0.429315, 0, 0.365238, -0.73048, -0.265358, 0.555005, -0.343022, -0.403231, 0.694631, -0.429315, 0, 0.27793, -0.555859, 0.201926, 0.365238, -0.73048, -0.265358, 0.27793, -0.555859, 0.201926, 0, -0.802381, 0, 0.365238, -0.73048, -0.265358, -0.0935008, -0.489585, 0.287768, 0.201994, -0.403988, 0.621659, -0.193504, -0.313101, 0.595545, -0.0935008, -0.489585, 0.287768, 0.27793, -0.555859, 0.201926, 0.201994, -0.403988, 0.621659, 0.27793, -0.555859, 0.201926, 0.637285, -0.393871, 0.463009, 0.201994, -0.403988, 0.621659 )
-
-[sub_resource type="ShaderMaterial" id=4]
-shader = ExtResource( 4 )
-shader_param/amp = 13.97
-shader_param/cast_shadow = true
-shader_param/cloud_shift = 0.005
-shader_param/global_transparency = 1.63
-shader_param/worley = ExtResource( 7 )
-shader_param/perlin = ExtResource( 6 )
-shader_param/blue = ExtResource( 5 )
-
-[sub_resource type="Curve" id=5]
-_data = [ Vector2( 0, 0.0247999 ), 0.0, 0.0, 0, 0, Vector2( 0.496191, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=6]
-width = 256
-curve = SubResource( 5 )
-
-[sub_resource type="ParticlesMaterial" id=7]
-trail_size_modifier = SubResource( 6 )
-emission_shape = 2
-emission_box_extents = Vector3( 64, 4, 64 )
-spread = 180.0
-flatness = 1.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 0.25
-angular_velocity = 4.41409e-043
-angle = 720.0
-angle_random = 1.0
-anim_speed_random = 1.0
-
-[sub_resource type="SphereMesh" id=8]
-radius = 2.0
-height = 8.0
-radial_segments = 24
-rings = 12
-
-[sub_resource type="CubeMesh" id=9]
-
-[sub_resource type="ShaderMaterial" id=10]
-shader = ExtResource( 9 )
-shader_param/rock_tint = Color( 0.584314, 0.513726, 0.4, 1 )
-shader_param/rock_uv_scale = Vector2( 24, 24 )
-shader_param/rock_fresnel = 4.208
-shader_param/rock_specularity = 0.2
-shader_param/dirt_tint = Color( 0.415686, 0.27451, 0.0784314, 1 )
-shader_param/dirt_uv_scale = Vector2( 64, 64 )
-shader_param/dirt_fresnel = 2.4
-shader_param/dirt_specularity = 1.85
-shader_param/rock_texture = ExtResource( 13 )
-shader_param/rock_normal = ExtResource( 12 )
-shader_param/dirt_texture = ExtResource( 11 )
-shader_param/dirt_normal = ExtResource( 10 )
-
-[node name="Mars" type="Spatial"]
+[node name="Spatial" type="Spatial"]
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 0.721257, 0.267373, -0.638983, 0, 0.922496, 0.386006, 0.692667, -0.278409, 0.665357, 0, 0, 0 )
-light_color = Color( 0.654902, 0.243137, 0.0823529, 1 )
+transform = Transform( -1, 5.01437e-008, -7.16125e-008, 0, 0.819152, 0.573577, 8.74228e-008, 0.573577, -0.819152, 0, 5, 0 )
+light_color = Color( 1, 0.807843, 0.403922, 1 )
+light_energy = 2.0
 shadow_enabled = true
-shadow_bias = -0.53
-shadow_reverse_cull_face = true
-directional_shadow_bias_split_scale = 0.16
+directional_shadow_blend_splits = true
 directional_shadow_depth_range = 1
-directional_shadow_max_distance = 1000.0
+directional_shadow_max_distance = 512.0
 
-[node name="Charater" parent="." instance=ExtResource( 1 )]
-transform = Transform( -1, 0, -1.50996e-007, 0, 1, 0, 1.50996e-007, 0, -1, 58.0513, -12.567, 2.06456 )
-collision/safe_margin = 6.738
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 1 )
-
-[node name="Obstacles" type="Spatial" parent="."]
-editor/display_folded = true
-transform = Transform( 0.993376, 0.113121, -0.0202021, -0.114911, 0.977904, -0.174642, 0, 0.175806, 0.984425, 0, -14.1971, -14.6783 )
-
-[node name="StaticBody" type="StaticBody" parent="Obstacles"]
-editor/display_folded = true
-transform = Transform( 3.53239, 1.87229, -0.129353, 0, 0.275694, 3.99049, 1.87675, -3.52399, 0.243465, 0, -0.588989, 62.8264 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Obstacles/StaticBody"]
-transform = Transform( 1, 0, 1.86265e-009, 5.96046e-008, 1, 0, 0, 0, 1, 0, -0.000658989, -0.00978935 )
-mesh = ExtResource( 2 )
-material/0 = SubResource( 2 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Obstacles/StaticBody"]
-shape = SubResource( 3 )
-
-[node name="StaticBody6" type="StaticBody" parent="Obstacles"]
-editor/display_folded = true
-transform = Transform( -2.05606, 3.42297, -0.236486, 0, 0.275694, 3.99049, 3.43113, 2.05117, -0.141711, -19.2775, -0.588989, 61.0132 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Obstacles/StaticBody6"]
-transform = Transform( 1, 0, 1.86265e-009, 5.96046e-008, 1, 0, 0, 0, 1, 0, -0.000658989, -0.00978935 )
-mesh = ExtResource( 2 )
-material/0 = SubResource( 2 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Obstacles/StaticBody6"]
-shape = SubResource( 3 )
-
-[node name="StaticBody2" type="StaticBody" parent="Obstacles"]
-editor/display_folded = true
-transform = Transform( 2.51966, -3.09927, 0.214122, 0, 0.275694, 3.99049, -3.10665, -2.51367, 0.173664, 11.6306, -0.588989, 50.6353 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Obstacles/StaticBody2"]
-transform = Transform( 1, 0, 1.86265e-009, 5.96046e-008, 1, 0, 0, 0, 1, 0, -0.000658989, -0.00978935 )
-mesh = ExtResource( 2 )
-material/0 = SubResource( 2 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Obstacles/StaticBody2"]
-shape = SubResource( 3 )
-
-[node name="StaticBody10" type="StaticBody" parent="Obstacles"]
-editor/display_folded = true
-transform = Transform( 2.97287, 2.66984, -0.184453, 0, 0.275694, 3.99049, 2.6762, -2.9658, 0.204901, -7.70113, -0.588989, 73.2558 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Obstacles/StaticBody10"]
-transform = Transform( 1, 0, 1.86265e-009, 5.96046e-008, 1, 0, 0, 0, 1, 0, -0.000658989, -0.00978935 )
-mesh = ExtResource( 2 )
-material/0 = SubResource( 2 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Obstacles/StaticBody10"]
-shape = SubResource( 3 )
-
-[node name="StaticBody3" type="StaticBody" parent="Obstacles"]
-transform = Transform( 2.51966, -3.09927, 0.214122, 0, 0.275694, 3.99049, -3.10665, -2.51367, 0.173664, 7.15846, -1.62752, 28.5143 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Obstacles/StaticBody3"]
-transform = Transform( 1, 0, 1.86265e-009, 5.96046e-008, 1, 0, 0, 0, 1, 0, -0.000658989, -0.00978935 )
-mesh = ExtResource( 2 )
-material/0 = SubResource( 2 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Obstacles/StaticBody3"]
-shape = SubResource( 3 )
-
-[node name="StaticBody7" type="StaticBody" parent="Obstacles"]
-transform = Transform( 2.97287, 2.66984, -0.184453, 0, 0.275694, 3.99049, 2.6762, -2.9658, 0.204901, 14.8122, -3.1099, 69.8157 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Obstacles/StaticBody7"]
-transform = Transform( 1, 0, 1.86265e-009, 5.96046e-008, 1, 0, 0, 0, 1, 0, -0.000658989, -0.00978935 )
-mesh = ExtResource( 2 )
-material/0 = SubResource( 2 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Obstacles/StaticBody7"]
-shape = SubResource( 3 )
-
-[node name="StaticBody4" type="StaticBody" parent="Obstacles"]
-editor/display_folded = true
-transform = Transform( 2.51966, -3.09927, 0.214122, 0, 0.275694, 3.99049, -3.10665, -2.51367, 0.173664, 27.812, -0.588989, 34.2788 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Obstacles/StaticBody4"]
-transform = Transform( 1, 0, 1.86265e-009, 5.96046e-008, 1, 0, 0, 0, 1, 0, -0.000658989, -0.00978935 )
-mesh = ExtResource( 2 )
-material/0 = SubResource( 2 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Obstacles/StaticBody4"]
-shape = SubResource( 3 )
-
-[node name="StaticBody8" type="StaticBody" parent="Obstacles"]
-editor/display_folded = true
-transform = Transform( 2.97287, 2.66984, -0.184453, 0, 0.275694, 3.99049, 2.6762, -2.9658, 0.204901, 7.80092, -0.588989, 90.2575 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Obstacles/StaticBody8"]
-transform = Transform( 1, 0, 1.86265e-009, 5.96046e-008, 1, 0, 0, 0, 1, 0, -0.000658989, -0.00978935 )
-mesh = ExtResource( 2 )
-material/0 = SubResource( 2 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Obstacles/StaticBody8"]
-shape = SubResource( 3 )
-
-[node name="StaticBody5" type="StaticBody" parent="Obstacles"]
-editor/display_folded = true
-transform = Transform( 2.51966, -3.09927, 0.214122, 0, 0.275694, 3.99049, -3.10665, -2.51367, 0.173664, 27.812, -0.37436, 2.02397 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Obstacles/StaticBody5"]
-transform = Transform( 1, 0, 1.86265e-009, 5.96046e-008, 1, 0, 0, 0, 1, 0, -0.000658989, -0.00978935 )
-mesh = ExtResource( 2 )
-material/0 = SubResource( 2 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Obstacles/StaticBody5"]
-shape = SubResource( 3 )
-
-[node name="StaticBody9" type="StaticBody" parent="Obstacles"]
-transform = Transform( 2.97287, 2.66984, -0.184453, -0.656342, 0.994641, 3.81836, 2.59447, -2.80761, 1.17732, 40.013, -4.30397, 91.9174 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Obstacles/StaticBody9"]
-transform = Transform( 1, 0, 1.86265e-009, 5.96046e-008, 1, 0, 0, 0, 1, 0, -0.000658989, -0.00978935 )
-mesh = ExtResource( 2 )
-material/0 = SubResource( 2 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Obstacles/StaticBody9"]
-shape = SubResource( 3 )
-
-[node name="Particles" type="Particles" parent="."]
-transform = Transform( 8, 0, 0, 0, 1, 0, 0, 0, 8, 0, 55.3259, 0 )
-material_override = SubResource( 4 )
-amount = 268
-lifetime = 14.95
-preprocess = 300.0
-speed_scale = 2.75
-randomness = 1.0
-process_material = SubResource( 7 )
-draw_passes = 2
-draw_pass_1 = SubResource( 8 )
-draw_pass_2 = SubResource( 9 )
-
-[node name="InfiniteTerrain" parent="." instance=ExtResource( 8 )]
+[node name="Terrain" parent="." instance=ExtResource( 1 )]
+terrain_scale = 32
 view_distance = 256
-seed_val = 42
-terrain_material = SubResource( 10 )
+persistence = 0.2
+
+[node name="World" type="WorldEnvironment" parent="."]
+environment = SubResource( 2 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+transform = Transform( -0.97, -0.0483014, -0.23826, 0, 0.980064, -0.198684, 0.243107, -0.192723, -0.950661, -56.9351, -116.309, -530.119 )
+
+[node name="Barracks" parent="." instance=ExtResource( 3 )]
+transform = Transform( -0.0647314, 0, 0.997903, 0, 1, 0, -0.997903, 0, -0.0647314, -121.69, -233.16, -607.583 )
+
+[node name="Comms Relay" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1019.04, 0.046936, -1850.68 )
+
+[node name="Engineering" parent="." instance=ExtResource( 5 )]
+transform = Transform( -0.425111, 0.107305, 0.898758, -0.051727, 0.988445, -0.142479, -0.903662, -0.10706, -0.414648, 231.241, -166.285, -145.743 )
+
+[node name="ScienceModule" parent="." instance=ExtResource( 6 )]
+transform = Transform( 0.871569, 0.117278, -0.476039, -0.0833061, 0.992274, 0.0919361, 0.483143, -0.0404717, 0.874605, 1023.74, 24.0151, -1262.06 )
+
+[node name="Storage" parent="." instance=ExtResource( 7 )]
+transform = Transform( 0.460204, 0.0121856, -0.88773, -0.0264693, 0.99965, 9.30996e-010, 0.887419, 0.0234976, 0.460365, -174.6, -277.298, -1342.24 )

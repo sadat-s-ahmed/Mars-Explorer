@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/14007_Moon_Building_Engineering_Module_v2_L1.obj-1ca68bdeeb941ac3251cd5ccbafd1709.mesh"
+
+[deps]
+
+files=[ "res://.import/14007_Moon_Building_Engineering_Module_v2_L1.obj-1ca68bdeeb941ac3251cd5ccbafd1709.mesh" ]
+
+source_file="res://Buildings/Engineering/14007_Moon_Building_Engineering_Module_v2_L1.obj"
+dest_files=[ "res://.import/14007_Moon_Building_Engineering_Module_v2_L1.obj-1ca68bdeeb941ac3251cd5ccbafd1709.mesh", "res://.import/14007_Moon_Building_Engineering_Module_v2_L1.obj-1ca68bdeeb941ac3251cd5ccbafd1709.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true

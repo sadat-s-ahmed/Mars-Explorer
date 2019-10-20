@@ -3,13 +3,13 @@
 [ext_resource path="res://elements/InfiniteTerrain.gd" type="Script" id=1]
 [ext_resource path="res://materials/MarsSurface.material" type="Material" id=2]
 
-[node name="InfiniteTerrain" type="StaticBody"]
+[node name="InfiniteTerrain" type="Spatial"]
 script = ExtResource( 1 )
-view_distance = 64
-height = 96
-seed_val = 41
-octaves = 4
-period = 120.0
-lacunarity = 4.0
-persistence = 0.25
+view_distance = 70
+height = 28
 terrain_material = ExtResource( 2 )
+seed_val = 37
+octaves = 1
+period = 63.61
+lacunarity = 2.97
+persistence = 0.33

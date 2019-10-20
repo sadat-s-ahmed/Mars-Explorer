@@ -1,18 +1,15 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://elements/Terrain.gd" type="Script" id=1]
-
-[sub_resource type="SpatialMaterial" id=1]
-flags_transparent = true
-albedo_color = Color( 1, 1, 1, 0.196078 )
+[ext_resource path="res://materials/MarsSurface.material" type="Material" id=2]
 
 [node name="StaticBody" type="StaticBody"]
 script = ExtResource( 1 )
-view_distance = 256
-height = 63
+view_distance = 24
+height = 24
 seed_val = 11
 octaves = 4
-period = 60.0
+period = 48.0
 lacunarity = 4.0
-persistence = 0.2
-terrain_material = SubResource( 1 )
+persistence = 0.3
+terrain_material = ExtResource( 2 )
